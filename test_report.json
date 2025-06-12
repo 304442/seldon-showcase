@@ -11,15 +11,15 @@
   "models": {
     "feature-transformer": {
       "status": "success",
-      "latency_ms": 77.1
+      "latency_ms": 72.6
     },
     "product-classifier-v1": {
       "status": "success",
-      "latency_ms": 66.5
+      "latency_ms": 64.8
     },
     "product-classifier-v2": {
       "status": "success",
-      "latency_ms": 64.1
+      "latency_ms": 62.5
     },
     "intent-classifier-v1": {
       "status": "failed_404",
@@ -29,31 +29,21 @@
       "status": "failed_404",
       "error": ""
     },
-    "product-recommender": {
-      "status": "failed_404",
-      "error": ""
-    },
     "drift-detector": {
       "status": "success",
-      "latency_ms": 69.0
+      "latency_ms": 68.7
     },
     "model-explainer": {
       "status": "success",
-      "latency_ms": 67.6
-    },
-    "performance-monitor": {
-      "status": "failed_404",
-      "error": ""
+      "latency_ms": 75.5
     }
   },
   "pipelines": {
     "product-pipeline-v1": {
-      "status": "success",
-      "latency_ms": 148.9
+      "status": "failed_400"
     },
     "product-pipeline-v2": {
-      "status": "success",
-      "latency_ms": 135.4
+      "status": "failed_400"
     },
     "instant-chatbot": {
       "status": "failed_404"
@@ -63,16 +53,13 @@
     },
     "real-time-monitoring": {
       "status": "failed_404"
-    },
-    "explanation-service": {
-      "status": "failed_404"
     }
   },
   "monitoring": {},
   "performance": {
     "requests": 10,
-    "avg_latency_ms": 69.1,
-    "p95_latency_ms": 118.3,
+    "avg_latency_ms": 64.7,
+    "p95_latency_ms": 67.4,
     "success_rate": "100%"
   }
 }

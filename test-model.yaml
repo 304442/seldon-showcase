@@ -1,0 +1,10 @@
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Model
+metadata:
+  name: iris-model
+  namespace: seldon-mesh
+spec:
+  storageUri: gs://seldon-models/scv2/samples/mlserver_1.5.0/iris-sklearn
+  requirements:
+  - scikit-learn
+  replicas: 1

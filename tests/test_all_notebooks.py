@@ -2,6 +2,7 @@
 """
 Live testing script for all Seldon Core 2 notebooks
 Tests deployment, inference, monitoring, and cleanup
+Note: Notebooks are now in the notebooks/ directory
 """
 
 import subprocess

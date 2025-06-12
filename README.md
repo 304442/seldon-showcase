@@ -4,21 +4,23 @@ Production-ready notebooks demonstrating enterprise-grade MLOps with Seldon Core
 
 ## 📚 Notebooks
 
-### 1. [v71.ipynb](v71.ipynb) - Complete MLOps Platform
+All notebooks are located in the `notebooks/` directory:
+
+### 1. [v71.ipynb](notebooks/v71.ipynb) - Complete MLOps Platform
 Comprehensive showcase of Seldon Core 2 features:
 - 🔧 Multi-model serving with MLServer and Triton
 - 📊 Real-time monitoring with Prometheus/Grafana
 - 🧪 A/B testing and canary deployments
 - 🚀 Production-ready with circuit breakers and auto-scaling
 
-### 2. [chatbot_mlops_showcase.ipynb](chatbot_mlops_showcase.ipynb) - Real-Time Chatbot
+### 2. [chatbot_mlops_showcase.ipynb](notebooks/chatbot_mlops_showcase.ipynb) - Real-Time Chatbot
 Business use case demonstrating instant response and recommendations:
 - ⚡ Sub-50ms response time with caching
 - 🛍️ Product recommendation engine
 - 📈 Load testing with concurrent users
 - 🔄 Circuit breakers for fault tolerance
 
-### 3. [advanced_data_science_monitoring.ipynb](advanced_data_science_monitoring.ipynb) - ML Monitoring
+### 3. [advanced_data_science_monitoring.ipynb](notebooks/advanced_data_science_monitoring.ipynb) - ML Monitoring
 Production monitoring for data science teams:
 - 🔍 Real-time drift detection
 - 🎯 Model explainability (SHAP/LIME)
@@ -69,6 +71,7 @@ pip install jupyter numpy pandas requests ipywidgets
 
 3. Start Jupyter:
 ```bash
+cd notebooks
 jupyter notebook
 ```
 
@@ -100,18 +103,34 @@ jupyter notebook
 
 ## 🧪 Testing
 
-Each notebook includes comprehensive testing sections. To verify your deployment:
+Run the comprehensive test suite:
 
-```python
-# Test model inference
-kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-
-# Run notebook cells to test
-# - Individual model inference
-# - Pipeline execution
-# - A/B testing
-# - Monitoring components
+```bash
+python tests/test_all_notebooks.py
 ```
+
+Or test individual components:
+
+```bash
+# Test chatbot deployment
+python tests/test_chatbot_deployment.py
+
+# Test working inference examples
+python tests/working-inference-example.py
+```
+
+## 📁 Project Structure
+
+```
+Seldon-Showcase/
+├── notebooks/           # Main Jupyter notebooks
+├── scripts/            # Deployment scripts
+├── tests/              # Testing scripts
+├── deployments/        # Kubernetes manifests
+└── docs-gb/            # Reference documentation
+```
+
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed organization.
 
 ## 📖 Documentation
 

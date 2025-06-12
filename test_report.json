@@ -11,15 +11,15 @@
   "models": {
     "feature-transformer": {
       "status": "success",
-      "latency_ms": 72.6
+      "latency_ms": 95.9
     },
     "product-classifier-v1": {
-      "status": "success",
-      "latency_ms": 64.8
+      "status": "failed_404",
+      "error": "404 page not found\n"
     },
     "product-classifier-v2": {
-      "status": "success",
-      "latency_ms": 62.5
+      "status": "failed_404",
+      "error": "404 page not found\n"
     },
     "intent-classifier-v1": {
       "status": "failed_404",
@@ -29,13 +29,21 @@
       "status": "failed_404",
       "error": ""
     },
+    "product-recommender": {
+      "status": "failed_404",
+      "error": ""
+    },
     "drift-detector": {
-      "status": "success",
-      "latency_ms": 68.7
+      "status": "failed_404",
+      "error": "404 page not found\n"
     },
     "model-explainer": {
-      "status": "success",
-      "latency_ms": 75.5
+      "status": "failed_404",
+      "error": "404 page not found\n"
+    },
+    "performance-monitor": {
+      "status": "failed_404",
+      "error": ""
     }
   },
   "pipelines": {
@@ -56,10 +64,5 @@
     }
   },
   "monitoring": {},
-  "performance": {
-    "requests": 10,
-    "avg_latency_ms": 64.7,
-    "p95_latency_ms": 67.4,
-    "success_rate": "100%"
-  }
+  "performance": {}
 }

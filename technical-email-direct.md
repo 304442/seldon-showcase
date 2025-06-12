@@ -1,0 +1,80 @@
+Subject: Re: AWS MSK & S3 KMS Issues - Configuration Fix
+
+Hi [Customer Name],
+
+I've reviewed your MSK and S3 issues. Here's what you need to fix them:
+
+## MSK Kafka Connection Issue
+
+Your replication factor is likely mismatched. AWS MSK defaults to min.insync.replicas=2, but Seldon might be using 1.
+
+Quick fix:
+```yaml
+kafka:
+  topics:
+    replicationFactor: 2  # Match your MSK setting
+```
+
+If you're using SASL authentication:
+```bash
+kubectl create secret generic aws-msk-kafka-secret -n seldon-mesh --from-literal password="YOUR_PASSWORD"
+```
+
+Then in your Helm values:
+```yaml
+kafka:
+  bootstrap: your-msk-endpoints:9094
+  debug: all  # Turn this on to see what's failing
+
+security:
+  kafka:
+    protocol: SASL_SSL
+    sasl:
+      mechanism: SCRAM-SHA-512
+      client:
+        username: your-username
+        secret: aws-msk-kafka-secret
+        passwordPath: password
+```
+
+Common gotchas:
+- Wrong port (use 9094 for SASL_SSL, not 9092)
+- Missing ACL permissions - you need topic, cluster, AND group permissions
+- Public vs VPC endpoints - make sure you're using the right bootstrap servers
+
+## S3 KMS MD5 Mismatch
+
+KMS-encrypted S3 objects don't return standard MD5 checksums. Rclone fails the integrity check.
+
+Create this secret:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: s3-kms-fix
+  namespace: seldon-mesh
+stringData:
+  s3: |
+    type: s3
+    name: s3
+    parameters:
+      provider: AWS
+      access_key_id: YOUR_KEY
+      secret_access_key: YOUR_SECRET
+      region: us-east-1
+      disable_checksum: true
+```
+
+Then reference it in your model:
+```yaml
+spec:
+  storageUri: "s3://your-bucket/model"
+  secretName: "s3-kms-fix"
+```
+
+The disable_checksum parameter isn't in our docs but it's a standard Rclone S3 option. You might also need to add your KMS key ARN if using customer-managed keys.
+
+Let me know if either issue persists after these changes.
+
+Thanks,
+[Your Name]

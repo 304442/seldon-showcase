@@ -27,6 +27,13 @@ Production monitoring for data science teams:
 - ⚖️ Fairness and bias monitoring
 - 🚨 Auto-remediation triggers
 
+### 4. [llm_gpu_showcase.ipynb](notebooks/llm_gpu_showcase.ipynb) - LLM GPU Deployment
+GPU cluster management and LLM deployment:
+- 🚀 GPU cluster scaling and cost management
+- 🤖 Three LLM deployment options (API, GPU, Runtime)
+- ⚡ Production autoscaling patterns
+- 💰 Automatic cost optimization
+
 ## 🏗️ Architecture
 
 ```

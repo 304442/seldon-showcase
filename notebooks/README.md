@@ -28,6 +28,14 @@ Advanced monitoring notebook for data science teams:
 - Performance tracking
 - Auto-remediation triggers
 
+### 4. `llm_gpu_showcase.ipynb` - LLM GPU Deployment
+GPU cluster management and LLM deployment notebook:
+- GPU cluster connection and scaling
+- Cost-aware cluster management
+- Three LLM deployment strategies
+- Production autoscaling patterns (Model HPA + Server native)
+- Complete loan approval demo
+
 ## 🚀 Quick Start
 
 1. **Launch Jupyter**:

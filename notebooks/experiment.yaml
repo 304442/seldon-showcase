@@ -1,0 +1,13 @@
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Experiment
+metadata:
+  name: product-ab-test
+  namespace: seldon-mesh
+spec:
+  default: product-pipeline-v1
+  resourceType: pipeline
+  candidates:
+    - name: product-pipeline-v1
+      weight: 90
+    - name: product-pipeline-v2
+      weight: 10

@@ -1,0 +1,14 @@
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Model
+metadata:
+  name: intent-classifier-v1
+  namespace: seldon-mesh
+  labels:
+    app: chatbot-platform
+    component: intent-classifier-v1
+    version: v1
+spec:
+  storageUri: gs://seldon-models/scv2/samples/mlserver_1.5.0/iris-sklearn
+  requirements:
+  - sklearn
+  memory: 500Mi

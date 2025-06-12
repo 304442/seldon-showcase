@@ -1,0 +1,78 @@
+{
+  "infrastructure": {
+    "kubectl": true,
+    "seldon_crds": true,
+    "namespace": true,
+    "istio": true,
+    "server_mlserver": true,
+    "server_triton": true,
+    "ab_test": true
+  },
+  "models": {
+    "feature-transformer": {
+      "status": "success",
+      "latency_ms": 77.1
+    },
+    "product-classifier-v1": {
+      "status": "success",
+      "latency_ms": 66.5
+    },
+    "product-classifier-v2": {
+      "status": "success",
+      "latency_ms": 64.1
+    },
+    "intent-classifier-v1": {
+      "status": "failed_404",
+      "error": ""
+    },
+    "entity-extractor": {
+      "status": "failed_404",
+      "error": ""
+    },
+    "product-recommender": {
+      "status": "failed_404",
+      "error": ""
+    },
+    "drift-detector": {
+      "status": "success",
+      "latency_ms": 69.0
+    },
+    "model-explainer": {
+      "status": "success",
+      "latency_ms": 67.6
+    },
+    "performance-monitor": {
+      "status": "failed_404",
+      "error": ""
+    }
+  },
+  "pipelines": {
+    "product-pipeline-v1": {
+      "status": "success",
+      "latency_ms": 148.9
+    },
+    "product-pipeline-v2": {
+      "status": "success",
+      "latency_ms": 135.4
+    },
+    "instant-chatbot": {
+      "status": "failed_404"
+    },
+    "chatbot-with-recommendations": {
+      "status": "failed_404"
+    },
+    "real-time-monitoring": {
+      "status": "failed_404"
+    },
+    "explanation-service": {
+      "status": "failed_404"
+    }
+  },
+  "monitoring": {},
+  "performance": {
+    "requests": 10,
+    "avg_latency_ms": 69.1,
+    "p95_latency_ms": 118.3,
+    "success_rate": "100%"
+  }
+}

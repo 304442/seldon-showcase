@@ -1,0 +1,67 @@
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: real-time-monitoring
+  namespace: seldon-mesh
+  labels:
+    app: monitoring-platform
+spec:
+  steps:
+    - name: drift-detector
+    - name: performance-monitor
+      inputs: [real-time-monitoring.inputs.data]
+      tensorMap:
+        real-time-monitoring.inputs.data: predict
+  output:
+    steps: [drift-detector, performance-monitor]
+---
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: explanation-service
+  namespace: seldon-mesh
+  labels:
+    app: monitoring-platform
+spec:
+  steps:
+    - name: model-explainer
+    - name: drift-detector
+      inputs: [explanation-service.inputs.data]
+      tensorMap:
+        explanation-service.inputs.data: predict
+  output:
+    steps: [model-explainer]
+---
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: instant-chatbot
+  namespace: seldon-mesh
+  labels:
+    app: chatbot-platform
+spec:
+  steps:
+    - name: intent-classifier-v1
+  output:
+    steps: [intent-classifier-v1]
+---
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: chatbot-with-recommendations
+  namespace: seldon-mesh
+  labels:
+    app: chatbot-platform
+spec:
+  steps:
+    - name: intent-classifier-v1
+    - name: entity-extractor
+      inputs: [chatbot-with-recommendations.inputs.text]
+      tensorMap:
+        chatbot-with-recommendations.inputs.text: predict
+    - name: product-recommender
+      inputs: [chatbot-with-recommendations.inputs.text]
+      tensorMap:
+        chatbot-with-recommendations.inputs.text: predict
+  output:
+    steps: [product-recommender]
